@@ -11,8 +11,6 @@ The form page allows the user to select from a range of locations and time range
 
 He will have to select at least one of each set of options to make a successful request.  
 
-Here, an example selection of locations and time ranges is made.  
-
 If he makes a successful request, he will see his forecasts displayed.  
 
 For each location, he will get a table of sunrise sunset data and a table of atmospheric weather data.  
