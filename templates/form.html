@@ -1,0 +1,52 @@
+<!-- Form template -->
+
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+  <p>This app provides simple astronomical forecasts for people interested in watching the stars. 
+    Select for which locations you want forecasts, 
+    for which days you want sunrise and sunset forecasts, 
+    and for which days you want astronomical viewing condition forecasts.</p>
+  <p>In the options below, the values for Days and Hours represent 
+    for how many units of time out from the present time the conditions will be forecasted. 
+    For example, 0 Days will give the sunrise and sunset forecasts for today, and 1 Days for tomorrow. 
+    Likewise, 3 Hours will give the astronomical viewing condition forecasts for 3 hours from the end of the current hour, 
+    and 24 Hours for 1 full day from the present time.</p>
+  <p>Please select at least one of each option to receive a forecast.</p>
+  <form action="/results" method="post">
+    <div class="row form-control-lg">
+      <div class="col-auto">
+        <h4>Locations</h4>
+        {% for name in locations %}
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="{{ name }}" name="{{ name }}">
+          <label class="form-check-label" for="{{ name }}">{{ name }}</label>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-auto">
+        <h4>Days</h4>
+        {% for name in days %}
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="{{ name }}" name="{{ name }}">
+          <label class="form-check-label" for="{{ name }}">{{ name }}</label>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-auto">
+        <h4>Hours</h4>
+        {% for name in hours %}
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="{{ name }}" name="{{ name }}">
+          <label class="form-check-label" for="{{ name }}">{{ name }}</label>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <button type="submit" class="btn btn-primary">View forecast</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

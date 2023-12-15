@@ -1,0 +1,115 @@
+<!-- Display template -->
+
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+  {% if locations > 0 and days > 0 and hours > 0 %}
+  <h3>Forecasts</h3>
+  <table class="table table-dark table-responsive">
+    <!-- <thead>
+      <th>Location</th>
+      <th>Coordinates</th>
+      <th>Timezone</th>
+    </thead> -->
+    <tbody>
+    {% for location in loc_data.keys() %}
+      <tr>
+        <th><h4>{{ loc_data[location]["name"] }}</h4></th>
+        <!-- <td>{{ loc_data[location]["coords"] }}</td>
+        <td>{{ loc_data[location]["tzId"] }}</td> -->
+      </tr>
+      <tr>
+        <td colspan="3">
+          <table class="table table-dark table-striped table-bordered table-hover table-responsive">
+            <thead>
+              <th>Day</th>
+              <th>Sunrise</th>
+              <th>Sunset</th>
+              <th>Nautical Sunrise</th>
+              <th>Nautical Sunset</th>
+            </thead>
+            <tbody class="table-group-divider">
+            {% for j in jj %}
+              <tr>
+                <th>{{ loc_data[location]["days"][j]["day"] }}</th>
+                <td>{{ loc_data[location]["days"][j]["sunrise"] }}</td>
+                <td>{{ loc_data[location]["days"][j]["sunset"] }}</td>
+                <td>{{ loc_data[location]["days"][j]["nautical_twilight_begin"] }}</td>
+                <td>{{ loc_data[location]["days"][j]["nautical_twilight_end"] }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <table class="table table-dark table-striped table-bordered table-hover table-responsive">
+            <thead>
+              <th>Hour</th>
+              <th>Cloud Cover</th>
+              <th>Precipitation Type</th>
+              <th>Atmosphere Transparency</th>
+            </thead>
+            <tbody class="table-group-divider">
+            {% for k in kk %}
+              <tr>
+                <th>{{ loc_data[location]["hours"][k]["hour"] }}</th>
+                <td>{{ loc_data[location]["hours"][k]["cloudcover"] }}</td>
+                <td>{{ loc_data[location]["hours"][k]["prec_type"] }}</td>
+                <td>{{ loc_data[location]["hours"][k]["transparency"] }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="alert alert-warning" role="alert">
+    Please select at least one of each option.
+  </div>
+  {% endif %}
+  
+  <form action="/" method="post">
+    <p>Go back through your browser to modify your selection or press the button below to clear your selection and start over.</p>
+    <div class="row">
+      <button type="submit" id="returnbutton" class="btn btn-primary">Return</button>
+    </div>
+  </form>
+  <br/>
+  
+  {% if locations > 0 and days > 0 and hours > 0 %}
+  <div>
+    <h5>What do the numbers for Day and Hour mean again?</h5>
+    <p>The values for Days and Hours represent for how many units of time out from the present time the conditions will be forecasted. 
+      For example, 0 Days will give the sunrise and sunset forecasts for today, and 1 Days for tomorrow. 
+      Likewise, 3 Hours will give the astronomical viewing condition forecasts for 3 hours from the end of the current hour, 
+      and 24 Hours for 1 full day from the present time.</p>
+    <h5>What is Nautical Twilight?</h5>
+    <p>Nautical twilight begins and ends when the sun is 12 degrees below the horizon. 
+      Between nautical sunrise and sunset, sunlight obscures the stars, but bright planets are still visible.</p>
+    <p>Civil twilight is listed in the table above as twilight. 
+      It begins and ends when the sun is at 6 degrees below the horizon, and astronomical twilight at 18 degrees.</p>
+    <h5>What does the number for Cloud Cover mean?</h5>
+    <p>If cloud cover is less than 3 on the scale from 1 to 9, the sky should be mostly free of clouds.</p>
+    <h5>What should I do with the Precipitation Type forecast?</h5>
+    <p>There may be precipitation of types snow, rain, frzr (freezing rain), icep (ice pellets), or none. 
+      If there is precipitation, consider staying indoors.</p>
+    <h5>What is Transparency?</h5>
+    <p>If transparency is greater than 6 on the scale from 1 to 8, you should be able to see stars in the sky.</p>
+    <p>"Transparency forecasts the transparency of the air. 
+      Here 'transparency' means just what astronomers mean by the word: the total transparency of the atmosphere from ground to space. 
+      It's calculated from the total amount of water vapor in the air. 
+      It is somewhat independant of the cloud cover forecast in that there can be isolated clouds in a transparent air mass, 
+      and poor transparency can occur when there is very little cloud.</p>
+    <p>Above average transparency is necessary for good observation of low contrast objects like galaxies and nebulae. 
+      However, open clusters and planetary nebulae are quite observable in below average transparency. 
+      Large globulars and planets can be observed in poor transparency."</p>
+    <p>Credit Attilla Danko for the explanation of transparency.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
