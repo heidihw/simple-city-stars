@@ -6,7 +6,7 @@ Based off of Clear Sky Charts, 7Timer! is a site created in July 2005 in China t
 
 These sites show a lot of information that has a high learning curve to understand and use. They have very informative displays but can be less user-friendly.  
 
-My project centralizes the data provided by the 7Timer! API combined with sunrise and sunset data. It seeks to provide simple and relevant information in one place to help casual stargazers decide and plan when they will be able to spend some of their free time watching the stars. 
+My project centralizes the data provided by the 7Timer! API combined with sunrise and sunset data. It seeks to provide simple and relevant information in one place to help casual stargazers decide and plan when they will be able to spend some of their free time watching the stars.  
 The form page allows the user to select from a range of locations and time ranges for which he would like to get forecasts.  
 
 He will have to select at least one of each set of options to make a successful request.  
